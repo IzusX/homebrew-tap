@@ -20,6 +20,8 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
       - uses: Homebrew/actions/setup-homebrew@ceec4e8419bb3c97ce96e9dda7738499ed5f869d
         id: homebrew
         with:
@@ -35,6 +37,8 @@ jobs:
           brew style Casks/arkvello.rb
           brew audit --cask "$TAP_NAME/arkvello"
       - name: Commit cask update
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           if [[ -z "$(git status --porcelain -- Casks/arkvello.rb)" ]]; then
             echo 'Arkvello is already up to date.'
@@ -44,4 +48,4 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add Casks/arkvello.rb
           git commit -m 'Update Arkvello cask from published release'
-          git push origin HEAD:main
+          git -c credential.helper= -c 'credential.helper=!gh auth git-credential' push origin HEAD:main

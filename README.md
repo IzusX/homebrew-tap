@@ -36,8 +36,8 @@ SHA-256 checksums, audits the generated cask and commits `Casks/arkvello.rb` if
 it changed. The workflow uses this repository's built-in `GITHUB_TOKEN`; no
 personal access token or cross-repository write access is required.
 
-Before the first release, the cask directory is intentionally empty. Run the
-update workflow after publishing the first release to make installation available.
+Casks are generated from published releases. The update workflow must complete
+before a new release is available through Homebrew.
 
 Pushes and pull requests run cask style and audit checks. The update workflow
 runs the same checks before committing, because commits made with `GITHUB_TOKEN`
