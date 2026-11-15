@@ -1,5 +1,7 @@
 # IzusX Homebrew tap
 
+**English** | [Русский](README.ru.md)
+
 Homebrew packages maintained by [IzusX](https://github.com/IzusX).
 This repository can contain multiple applications (`Casks/`) and command-line
 tools (`Formula/`). Application sources and binaries live in their own projects.
